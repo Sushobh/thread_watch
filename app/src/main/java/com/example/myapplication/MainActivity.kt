@@ -15,12 +15,13 @@ import java.nio.file.Paths
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private var mainViewModel2 : MainViewModel2? = MainViewModel2();
+    private var mainViewModel = MainViewModel()
     private var mPackageCodePath = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        mainViewModel2?.helloWorld()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 mPackageCodePath = getPackageCodePath()
@@ -71,6 +72,8 @@ class MainActivity : AppCompatActivity() {
             }).apply {
                 name = "iehshx"
             }.start()
+            mainViewModel2?.helloWorld()
+            mainViewModel.helloWorld()
         }
     }
 
