@@ -38,13 +38,15 @@ void ObjAllocCallback(jvmtiEnv *jvmti, JNIEnv *jni, jthread thread, jobject obje
     jstring name = static_cast<jstring>(jni->CallObjectMethod(klass, mid_getName));
     const char *className = jni->GetStringUTFChars(name, JNI_FALSE);
     if (strcmp(className, "java.lang.Thread") == 0) {
-        LOGE("生成了对象 %s , 大小:%d", className, size);
+        LOGE("Logitech %s",className);
     }
+
     jni->ReleaseStringUTFChars(name, className);
 }
 
 extern "C" JNIEXPORT jint JNICALL Agent_OnAttach(JavaVM *vm, char *options,
                                                  void *reserved) {
+    LOGE("Logitech %s","onAttach");
     jvmtiEnv *jvmti_env = CreateJvmtiEnv(vm);
     if (jvmti_env == nullptr) {
         return JNI_ERR;
